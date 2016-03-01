@@ -17,7 +17,6 @@ module NavigationHelpers
     #   puts 'IM HERE'
     #   '/'
     when /^the home page$/
-      puts 'IM dfsfdsfdsHERE'
       '/movies'
       # root_path
       # redirect_to '/movies'
@@ -65,8 +64,6 @@ module NavigationHelpers
       m1 = $1[1, $1.length-2]
       # puts movie
       # puts "#{movie}"
-      puts "WHY ARE YOU HERE"
-      puts Movie.find_by_title(m1).id
       search_director_path(Movie.find_by_title(m1).id)
   
 

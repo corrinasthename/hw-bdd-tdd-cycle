@@ -5,8 +5,6 @@ require 'rails_helper'
 describe MoviesController, :type => :controller do
   describe 'add director' do
   # describe 'PUT update' do
-    let(:movie) { FactoryGirl.build(:movie) }
-    let(:id) { '1' }
     
     before do
       movie.stub(:id).and_return(id) # just to illustrate, not necessary if stubbing the find class method
@@ -18,14 +16,14 @@ describe MoviesController, :type => :controller do
     #   @movie = FactoryGirl.build(:movie, title: "Harry Potter", rating: "PG")
     # end
     
-    context "valid attributes" do
+    # context "valid attributes" do
       # it "located the requested @contact" do
-      it "located the edit link" do
+      # it "located the edit link" do
         # put :update, id: @contact, contact: Factory.attributes_for(:contact)
-        put :update, id: movie.id, movie: FactoryGirl.attributes_for(:movie)
-        assigns(:movie).should eq(movie)      
-      end
-    end
+        # put :update, id: movie.id, movie: 'title' => 'Harry Potter', 'rating' => 'PG'
+        # assigns(:movie).should eq(movie)      
+      # end
+    # end
   end
 end
 
