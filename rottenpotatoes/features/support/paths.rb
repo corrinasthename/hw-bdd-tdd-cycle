@@ -20,6 +20,9 @@ module NavigationHelpers
       '/movies'
       # root_path
       # redirect_to '/movies'
+      
+    when /^the RottenPotatoes home page$/
+      '/movies'
 
     # when (/^the edit page for (.*)$/) do |title|
       # movie = $1.split(/\s+/)
@@ -30,6 +33,8 @@ module NavigationHelpers
     # when(/^the edit page for (.*)$/) do |title|
     #   edit_movie_path(Movie.find_by_title(title).id)
     # end
+    
+
     
     when /^the edit page for (.*)$/
       # puts $1
@@ -65,6 +70,9 @@ module NavigationHelpers
       # puts movie
       # puts "#{movie}"
       search_director_path(Movie.find_by_title(m1).id)
+      
+    when /^the RottenPotatoes home page$/
+      
   
 
     # Add more mappings here.

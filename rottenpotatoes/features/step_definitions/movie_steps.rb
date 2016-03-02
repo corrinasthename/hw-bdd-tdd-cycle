@@ -21,3 +21,67 @@ Then /^the director of (.*) should be (.*)/ do |movie, director|
     Then I should see "#{director[1, director.length-2]}"
   }
 end
+
+Then /I should either be on (.*) or (.*)/ do |path1, path2|
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+    current_path.should == path_to(path1) or current_path.should == path_to(path2)
+  else
+    if (path_to(path1) != current_path)
+      assert_equal path_to(path2), current_path
+    else
+      assert_equal path_to(path1), current_path 
+    end
+  end
+end
+
+
+Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  #  ensure that that e1 occurs before e2.
+  #  page.body is the entire content of the page as a string.
+  first_index = page.body.index(e1)
+  second_index = page.body.index(e2)
+  if !(first_index < second_index)
+    fail "Wrong order"
+  end
+  # fail "Unimplemented"
+end
+
+
+# Make it easier to express checking or unchecking several boxes at once
+#  "When I uncheck the following ratings: PG, G, R"
+#  "When I check the following ratings: G"
+
+When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
+  # HINT: use String#split to split up the rating_list, then
+  #   iterate over the ratings and reuse the "When I check..." or
+  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
+  ratings = rating_list.split(',')
+  if !(uncheck == "un")
+    ratings.each do |rating|
+      check("ratings[#{rating}]")
+    end
+  else
+    ratings.each do |rating|
+      uncheck("ratings[#{rating}]")
+    end
+  end
+  # fail "Unimplemented"
+end
+
+
+Then /I should see all the movies/ do
+  # Make sure that all the movies in the app are visible in the table
+  count = Movie.count
+  # num_movies = 0
+  all_movies = Movie.all
+  all_movies.each do |movie|
+    steps %Q{
+      Then I should see "#{movie[:title]}"
+    }
+  end
+  # if !(count.should == 10)
+  #   fail "Not all movies shown."
+  # end
+  # fail "Unimplemented"
+end
