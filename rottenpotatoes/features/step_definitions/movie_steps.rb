@@ -22,19 +22,6 @@ Then /^the director of (.*) should be (.*)/ do |movie, director|
   }
 end
 
-Then /I should either be on (.*) or (.*)/ do |path1, path2|
-  current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == path_to(path1) or current_path.should == path_to(path2)
-  else
-    if (path_to(path1) != current_path)
-      assert_equal path_to(path2), current_path
-    else
-      assert_equal path_to(path1), current_path 
-    end
-  end
-end
-
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
