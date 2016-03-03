@@ -45,7 +45,6 @@ module NavigationHelpers
 
   
     when /^the show page for (.*)$/
-      # puts $1
       title = $1[1, $1.length-2]
       # puts title
       # Movie.find_by('title'=>title).id
@@ -71,8 +70,7 @@ module NavigationHelpers
       # puts "#{movie}"
       search_director_path(Movie.find_by_title(m1).id)
       
-    when /^the RottenPotatoes home page$/
-      
+
   
 
     # Add more mappings here.

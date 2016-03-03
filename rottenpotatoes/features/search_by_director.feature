@@ -31,4 +31,20 @@ Scenario: can't find similar movies if we don't know director (sad path)
   Then  I should not see "Ridley Scott"
   When  I follow "Find Movies With Same Director"
   Then  I should either be on the home page or the RottenPotatoes home page
-  And   I should see "'Alien' has no director info"
+  And   I should see "Alien" has no director info
+  
+Scenario: movie with unique director
+  Given I am on the details page for "Blade Runner"
+  When  I follow "Find Movies With Same Director"
+  Then  I should be on the Similar Movies page for "Blade Runner"
+  Then  I should see "Ridley Scott"
+  And   I should not see "George Lucas"
+
+Scenario: delete a movie
+  Given I am on the details page for "Blade Runner"
+  And I press "Delete" 
+  Then I should see "Movie 'Blade Runner' deleted"
+  Then I press "Refresh"
+  Then I should not see "Blade Runner"
+  
+  

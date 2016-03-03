@@ -85,3 +85,9 @@ Then /I should see all the movies/ do
   # end
   # fail "Unimplemented"
 end
+
+Then /I should see (.*) has no director info/ do |title|
+  steps %Q{
+    Then the director of #{title} should be ""
+  }
+end
